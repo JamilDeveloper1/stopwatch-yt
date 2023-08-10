@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch | Javascript</title>
+<style>
+
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-color: lightblue;
+}
+
+
+.container{
+    width: 80%;
+    height: 300px;
+    background-color: aliceblue;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.205);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+.timer{
+    font-size: 30px;
+}
+.btns{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.btns button{
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.205);
+    border-radius: 5px;
+    background-color: lightblue;
+}
+.btns .reset{
+    background-color: lightcoral;
+}
+
+
+
+</style>
+</head>
+<body>
+    
+
+<div class="container">
+    <div class="timer">
+        <span class="hour">00</span> :
+        <span class="min">00</span> :
+        <span class="second">00</span> 
+    </div>
+    <div class="btns">
+        <button class="reset">Reset</button>
+        <button class="start">Start</button>
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+
+const second = document.querySelector(".second");
+const min = document.querySelector(".min");
+const hour = document.querySelector(".hour");
+
+let myInterval;
+
+const start = document.querySelector(".start");
+
+const reset = document.querySelector(".reset");
+
+
+let changeText = false;
+
+start.addEventListener("click",() => {
+
+    changeText = !changeText;
+
+    if(changeText){
+        start.innerHTML = "Stop";
+        myInterval = setInterval(() =>{
+            if(second.innerHTML < 60){
+            second.innerHTML++;
+            }else{
+                second.innerHTML = '0';
+                if(min.innerHTML < 60){
+                min.innerHTML++;
+                }else{
+                    min.innerHTML = '0';
+                    hour.innerHTML++
+                }
+            }
+
+
+        },1000)
+    }
+
+else{
+    start.innerHTML = "Start";
+    clearInterval(myInterval);
+}
+
+
+})
+
+
+
+
+reset.addEventListener("click",() =>{
+    hour.innerHTML = '00';
+    min.innerHTML = '00';
+    second.innerHTML = '00';
+    
+})
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
